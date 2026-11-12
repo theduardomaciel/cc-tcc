@@ -1,0 +1,23 @@
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# PDF gerado (versione apenas releases, se quiser)
+main.pdf
+
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store
