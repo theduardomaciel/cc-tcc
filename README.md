@@ -26,10 +26,17 @@ O trabalho combina uma revisão da literatura sobre desenvolvimento multiplatafo
 
 ```
 .
-├── tcc/            # fontes LaTeX (template TCC do IC/UFAL)
-├── referencias/    # arquivos .bib (Scopus, Web of Science)
-├── prototipo/      # código do protótipo do framework
-└── README.md
+├── README.md
+├── .gitignore
+├── main.tex
+├── referencias.bib
+├── capitulos/
+│   ├── 01-introducao.tex
+│   ├── 02-fundamentacao.tex
+│   ├── 03-metodologia.tex
+│   └── 04-conclusao.tex
+├── figuras/.gitkeep
+└── busca/.gitkeep
 ```
 
 ## Compilando o documento
