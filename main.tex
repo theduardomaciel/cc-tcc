@@ -8,10 +8,10 @@
     citecolor = {Blue},
     urlcolor = {Red},
     unicode = {true},
-    pdftitle = {Título do trabalho}, 
-    pdfauthor = {Fulano da Silva Alves},
+    pdftitle = {Gerando interfaces nativas para desktop com código único},
+    pdfauthor = {Eduardo Maciel Alexandre},
     pdfsubject = {Trabalho de Conclusão de Curso},
-    pdfkeywords = {processamento gráfico, imagens médicas, visão computacional, aprendizagem profunda, aumento de dados, graphics processing, medical images, computer vision, deep learning, data augmentation}
+    pdfkeywords = {desenvolvimento multiplataforma, interfaces nativas, geração de código, transpilação, cross-platform development, native user interfaces, code generation, transpilation}
 }
 
 \usepackage{algorithm}
@@ -24,6 +24,9 @@
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
+% Marcador visível para pontos que precisam de confirmação
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{[#1]}}}
+
 \begin{document}
 
     % Inclui o preâmbulo do documento (Informações da capa e contracapa)
@@ -35,12 +38,15 @@
     \capa
     
     % Agradecimentos
-    \include{pre-textuais/agradecimentos}
+    %\include{pre-textuais/agradecimentos}
     
     % Resumo e Abstract
     \include{pre-textuais/resumo}
     \include{pre-textuais/abstract}
-    
+
+    % Declaração de uso de IA
+    \include{pre-textuais/declaracao-ia}
+
     % Sumário
     \tableofcontents
     \thispagestyle{empty}
@@ -52,10 +58,10 @@
     % \include{capitulos/fundamentacao}
     % \include{capitulos/metodos_materiais}
     % \include{capitulos/resultados_experimentais}
-    \include{capitulos/conclusao}
+    %\include{capitulos/conclusao}
     
     % Pós Textuais
-    \nocite{*}
+    %\nocite{*}
     \include{pos-textuais/referencias}
 
 \end{document}

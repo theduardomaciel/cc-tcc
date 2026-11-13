@@ -1,0 +1,10 @@
+\mychapter{Materiais e Métodos}{cap:metodos}
+\lhead{MATERIAIS E MÉTODOS}
+
+A pesquisa é aplicada e experimental. Duas aplicações de referência, com telas de lista, formulário e navegação, serão projetadas no Figma com as bibliotecas oficiais de componentes de cada sistema operacional e implementadas em três versões: (A) escrita à mão em SwiftUI (macOS) e WinUI~3 (Windows); (B) gerada pelo framework a partir de uma fonte única; (C) com renderização própria, usando Electron como linha de base, um dos frameworks avaliados no desktop por Milichiewicz e Badurowicz \cite{milichiewicz2025comparative}. As três versões partem do mesmo projeto no Figma.
+
+O framework será desenvolvido de forma iterativa. A fonte única será escrita em Kotlin, com sintaxe declarativa, e o gerador produzirá projetos nativos por plataforma. O gerador será escrito, preferencialmente, em Rust. O escopo fica restrito a aplicações simples para Windows e macOS, e o Linux será tratado como trabalho futuro.
+
+As medidas de desempenho são uso de CPU, memória e tempo de resposta, como em Biørn-Hansen et al.\ \cite{biorn2020empirical}, mais tamanho de armazenamento, como em Mahmoud et al.\ \cite{mahmoud2024trans}. Cada medição será repetida o suficiente para reportar mediana, intervalo de confiança e tamanho de efeito, e a margem de equivalência da H1 será fixada antes da coleta. A fidelidade visual será medida por similaridade estrutural (SSIM) entre capturas de tela das versões geradas e das escritas à mão, métrica também usada no GUIMigrator \cite{gao2026guimigrator}. A cobertura de componentes nativos será verificada por lista de conferência.
+
+Os experimentos rodarão em um iMac com macOS Sequoia do laboratório e em uma máquina com Windows, mantidos fixos durante toda a coleta. Cada sistema será medido com as ferramentas de profiling da própria plataforma, e as três versões rodarão nas mesmas condições (mesmo equipamento, mesma carga e estado inicial limpo). Todo o código, as telas de referência e os dados coletados ficarão no repositório do trabalho, para que a comparação possa ser repetida.
