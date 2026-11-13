@@ -197,7 +197,7 @@ de Curso e Dissertacoes]
 %%%%%%%%%%%%%%%%%%%%%%%%%%% [Rian,Ivan] Fim Modificações %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                DECLARAÇÃO DE OPÇÕES: DISSERTAÇÃO e TCC                     %%
+%%        DECLARAÇÃO DE OPÇÕES: DISSERTAÇÃO, TCC e PRÉ-PROPOSTA               %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%------------------------------------------------------------------------------
@@ -205,6 +205,12 @@ de Curso e Dissertacoes]
 %%------------------------------------------------------------------------------
 \newboolean{tcc}
 \setboolean{tcc}{true}
+
+%%------------------------------------------------------------------------------
+%% Pré-proposta de TCC: desligada por padrão
+%%------------------------------------------------------------------------------
+\newboolean{preproposta}
+\setboolean{preproposta}{false}
 
 %%------------------------------------------------------------------------------
 %% Declara a opção de dissertação
@@ -223,9 +229,38 @@ de Curso e Dissertacoes]
 }
 
 %%------------------------------------------------------------------------------
+%% Declara a opção de pré-proposta de TCC
+%%------------------------------------------------------------------------------
+\DeclareOption{preproposta}{%
+    \setboolean{preproposta}{true}
+    \setboolean{tcc}{true}
+    \typeout{Tipo de Documento: Pre-proposta de TCC.}
+}
+
+%%------------------------------------------------------------------------------
 %% Executa as opções
 %%------------------------------------------------------------------------------
 \ProcessOptions\relax
+
+%%------------------------------------------------------------------------------
+%% Nome do tipo de documento (usado na capa)
+%%------------------------------------------------------------------------------
+\newcommand{\tipoDocumento}{%
+    \ifthenelse{\boolean{preproposta}}%
+        {Pré-proposta de Trabalho de Conclusão de Curso}%
+        {\ifthenelse{\boolean{tcc}}%
+            {Trabalho de Conclusão de Curso}%
+            {Dissertação de Mestrado}}%
+}
+
+%%------------------------------------------------------------------------------
+%% Marca d'água "PRÉ-PROPOSTA"
+%%------------------------------------------------------------------------------
+%\ifthenelse{\boolean{preproposta}}{%
+%    \RequirePackage{draftwatermark}
+%    \SetWatermarkText{PRÉ-PROPOSTA}
+%    \SetWatermarkScale{0.5}
+%}{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -276,6 +311,24 @@ de Curso e Dissertacoes]
 % Define a altura do cabeçalho
 \addtolength{\headheight}{3.05pt} 
 
+%%------------------------------------------------------------------------------
+%% Rodapé de pré-proposta
+%%------------------------------------------------------------------------------
+%\newcommand{\rodapePreproposta}{\footnotesize Pré-proposta de TCC  --- versão de \today}
+
+\ifthenelse{\boolean{preproposta}}{%
+    % Páginas normais
+    \lfoot{\rodapePreproposta}%
+    % Primeira página de cada capítulo usa o estilo "plain", então redefinimos
+    % também para o rodapé aparecer nela (mantendo o número da página no centro)
+    \fancypagestyle{plain}{%
+        \fancyhf{}%
+        \lfoot{\rodapePreproposta}%
+        \cfoot{\thepage}%
+        \renewcommand{\headrulewidth}{0pt}%
+    }%
+}{}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                           DEFINIÇÃO DOS COMANDOS                           %%
@@ -289,8 +342,7 @@ de Curso e Dissertacoes]
     \begin{flushright} % Alinhamento à direita
       \href{http://ic.ufal.br}{\includegraphics[width=.3\linewidth]{IC.eps}}\\%
 % [Rian] Adicionado href
-      \Large \vspace*{2cm} \ifthenelse{\boolean{tcc}}{Trabalho de Conclusão de 
-Curso}{Dissertação de Mestrado}\\%
+      \Large \vspace*{2cm} \tipoDocumento\\%
       \vspace*{2cm} \LARGE \textbf{\@titulo} \\%
       \vspace*{2cm}%
       \Large \href{\@autorPagina}{\color{black}{\@autorNome}} \\ \normalsize %
@@ -310,7 +362,8 @@ Curso}{Dissertação de Mestrado}\\%
       \normalsize \vfill Maceió, \@data%
     \end{flushright}%
     \folhaDeRosto%
-    \aprovacao%
+    % Pré-proposta não tem banca assinando: pula a página de aprovação
+    \ifthenelse{\boolean{preproposta}}{}{\aprovacao}%
     \renewcommand{\thepage}{\roman{page}} \setcounter{page}{0}
     \normalsize%
 }
@@ -333,13 +386,17 @@ Curso}{Dissertação de Mestrado}\\%
     \large%
     \hfill%
     \begin{minipage}{ 11 cm }%
-        \ifthenelse{\boolean{tcc}}%
-       {Monografia apresentada como requisito parcial para obtenção do grau de
+        \ifthenelse{\boolean{preproposta}}%
+        {Pré-proposta de Trabalho de Conclusão de Curso apresentada ao
+Instituto de Computação da Universidade Federal de Alagoas como parte das
+atividades do componente de TCC.}%
+        {\ifthenelse{\boolean{tcc}}%
+            {Monografia apresentada como requisito parcial para obtenção do grau de
 Bacharel em Ciência da Computação do Instituto de Computação da Universidade
 Federal de Alagoas.}%
-        {Dissertação apresentada como requisito parcial para obtenção do grau de
+            {Dissertação apresentada como requisito parcial para obtenção do grau de
 Mestre pelo Curso de Mestrado em Modelagem Computacional de Conhecimento do
-Instituto de Computação da Universidade Federal de Alagoas.}%
+Instituto de Computação da Universidade Federal de Alagoas.}}%
     \end{minipage}%
     \begin{flushright}
         \vspace*{2cm} \large%
