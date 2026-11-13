@@ -5,18 +5,18 @@
 
 \textbf{Objetivos específicos.}
 \begin{enumerate}
-  \item Quantificar a diferença de desempenho (tempo de resposta, memória e CPU) entre as aplicações geradas e as escritas à mão.
-  \item Comparar as aplicações geradas com uma versão de renderização própria.
+  \item Quantificar a diferença de desempenho (tempo de resposta, memória e CPU) entre as aplicações geradas e as desenvolvidas manualmente.
+  \item Comparar as aplicações geradas com uma versão multiplataforma convencional.
   \item Medir a similaridade visual das aplicações geradas em relação às escritas à mão.
   \item Determinar a fração dos componentes de interface de cada sistema operacional que a fonte única consegue expressar.
 \end{enumerate}
 
 \textbf{Pergunta de pesquisa.} Como gerar aplicações multiplataforma com interfaces nativas para diferentes sistemas operacionais a partir de uma única fonte declarativa, preservando o desempenho e respeitando as convenções de interface de cada plataforma?
 
-\textbf{Hipóteses.} Formuladas antes dos experimentos, H1 a H3 competem entre si.
+\textbf{Hipóteses.} Formuladas antes dos experimentos; H3 é rival de H1 e H2, e H4 é independente.
 \begin{itemize}
   \item \textbf{H1:} as aplicações geradas têm desempenho equivalente ao das escritas à mão, isto é, a diferença entre as medianas fica dentro de uma margem de equivalência pré-definida.
-  \item \textbf{H2:} as aplicações geradas têm desempenho superior ao da versão com renderização própria, tanto no Windows quanto no macOS.
-  \item \textbf{H3 (rival):} o custo da geração e da camada compartilhada anula o ganho, e as aplicações geradas ficam equivalentes à versão com renderização própria.
+  \item \textbf{H2:} as aplicações geradas têm desempenho superior ao da versão multiplataforma convencional, tanto no Windows quanto no macOS.
+  \item \textbf{H3 (rival):} o custo da geração e da camada compartilhada anula o ganho, e as aplicações geradas ficam equivalentes à versão multiplataforma convencional.
   \item \textbf{H4 (cobertura):} a fonte única não cobre todos os componentes nativos do Windows e macOS, e a similaridade visual (SSIM) é menor nas telas com componentes não cobertos.
 \end{itemize}

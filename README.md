@@ -1,53 +1,49 @@
-# Desenvolvimento de aplicações multiplataforma com interfaces gráficas nativas a partir de uma base única de código
+# Gerando interfaces nativas para desktop com código único
 
 Trabalho de Conclusão de Curso em Ciência da Computação, Instituto de Computação, Universidade Federal de Alagoas (UFAL).
 
 - **Autor:** Eduardo Maciel Alexandre
-- **Orientador:** Prof. Fábio José Coutinho da Silva
-- **Status:** pré-proposta (em elaboração)
+- **Orientador:** Prof. Dr. Fábio José Coutinho da Silva
+- **Status:** pré-proposta (novembro de 2026)
 
 ## Sobre o trabalho
 
-Frameworks multiplataforma como Electron, Flutter e React Native reduzem o custo de manter um mesmo aplicativo em vários sistemas, mas costumam fazer isso renderizando a própria interface ou embutindo uma WebView, o que resulta em aplicações que destoam do design system de cada sistema operacional e, muitas vezes, em desempenho inferior ao das ferramentas nativas (SwiftUI, WinUI 3, Jetpack Compose). Este trabalho investiga uma alternativa intermediária: construir a interface a partir de uma única base de código, mas traduzindo-a para os componentes nativos de cada plataforma, de modo que o resultado seja visual e funcionalmente indistinguível de um aplicativo escrito à mão para aquele sistema.
+Frameworks multiplataforma reduzem a duplicação de código, mas costumam desenhar a própria interface ou embutir uma WebView, o que compromete a aderência ao *design system* de cada sistema operacional e tende a custar desempenho e consumo de recursos. Manter implementações nativas independentes evita esses problemas, mas exige bases de código separadas. Este trabalho propõe gerar projetos nativos para Windows (WinUI 3) e macOS (SwiftUI) a partir de uma única fonte declarativa, sem camada de renderização própria, e avaliar o resultado em relação ao código nativo escrito à mão.
 
 ## Pergunta de pesquisa
 
-> Como desenvolver aplicativos multiplataforma que fazem uso dos componentes nativos de interface em uma base única de código?
+> Como gerar aplicações multiplataforma com interfaces nativas para diferentes sistemas operacionais a partir de uma única fonte declarativa, preservando o desempenho e respeitando as convenções de interface de cada plataforma?
 
 ## Escopo
 
-O foco é deliberadamente restrito: aplicações desktop simples para Windows e macOS, com interface declarativa e lógica compartilhada. A ideia central é automatizar de forma sistemática e determinística a geração dos projetos nativos de cada plataforma, preservando a possibilidade de abandonar a ferramenta a qualquer momento e continuar o desenvolvimento diretamente com as ferramentas oficiais de cada sistema. A escolha da linguagem do framework e do núcleo compartilhado faz parte da investigação e ainda não está fechada.
+O foco é deliberadamente restrito: aplicações desktop simples para Windows e macOS. A fonte única será escrita em Kotlin, com sintaxe declarativa, e o gerador será desenvolvido preferencialmente em Rust. Como o gerador produz projetos nativos padrão, o código resultante pode ser mantido diretamente com as ferramentas oficiais de cada sistema. Linux fica como trabalho futuro.
 
 ## Metodologia
 
-O trabalho combina uma revisão da literatura sobre desenvolvimento multiplataforma e tradução de componentes de interface entre plataformas (buscas no Scopus e no Web of Science, organizadas com Zotero e Better BibTeX) com o desenvolvimento de um protótipo e de aplicações de referência, cujo design é feito no Figma com as bibliotecas oficiais de componentes de cada sistema. A avaliação compara aderência visual ao design system nativo e desempenho em relação a aplicações equivalentes feitas com as ferramentas recomendadas de cada plataforma.
+A pesquisa é aplicada e experimental. Duas aplicações de referência, projetadas no Figma com as bibliotecas oficiais de componentes de cada sistema, serão implementadas em três versões: (A) escrita à mão em SwiftUI e WinUI 3; (B) gerada a partir da fonte única; (C) multiplataforma convencional, inicialmente com Electron. A avaliação compara uso de CPU, memória, tempo de resposta e tamanho de armazenamento, além da similaridade visual (SSIM) e da cobertura de componentes nativos. A revisão da literatura foi feita nas bases Scopus e Web of Science.
 
 ## Estrutura do repositório
 
 ```
 .
 ├── README.md
-├── .gitignore
-├── main.tex
+├── main.tex                 # documento principal
+├── ic.cls                   # classe do template de TCC do IC
 ├── referencias.bib
-├── capitulos/
-│   ├── 01-introducao.tex
-│   ├── 02-fundamentacao.tex
-│   ├── 03-metodologia.tex
-│   └── 04-conclusao.tex
-├── figuras/.gitkeep
-└── busca/.gitkeep
+├── pre-textuais/            # preâmbulo, resumo, abstract, declaração de uso de IA
+├── capitulos/               # introdução, objetivos, relevância, métodos, cronograma
+├── pos-textuais/            # referências
+└── res/                     # imagens do template
 ```
 
 ## Compilando o documento
 
+É necessária uma distribuição TeX Live completa (o template usa `babel` em português, `bbm`, `tracklang`, entre outros pacotes).
+
 ```bash
-cd tcc
 latexmk -pdf main.tex
 ```
 
 ## Licença
 
-A definir
-
-<!-- definir (ex.: CC BY 4.0 para o texto, MIT para o código) -->
+A definir.

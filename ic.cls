@@ -311,25 +311,6 @@ de Curso e Dissertacoes]
 % Define a altura do cabeçalho
 \addtolength{\headheight}{3.05pt} 
 
-%%------------------------------------------------------------------------------
-%% Rodapé de pré-proposta
-%%------------------------------------------------------------------------------
-%\newcommand{\rodapePreproposta}{\footnotesize Pré-proposta de TCC  --- versão de \today}
-
-\ifthenelse{\boolean{preproposta}}{%
-    % Páginas normais
-    \lfoot{\rodapePreproposta}%
-    % Primeira página de cada capítulo usa o estilo "plain", então redefinimos
-    % também para o rodapé aparecer nela (mantendo o número da página no centro)
-    \fancypagestyle{plain}{%
-        \fancyhf{}%
-        \lfoot{\rodapePreproposta}%
-        \cfoot{\thepage}%
-        \renewcommand{\headrulewidth}{0pt}%
-    }%
-}{}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                           DEFINIÇÃO DOS COMANDOS                           %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
