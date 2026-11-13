@@ -12,7 +12,7 @@
 *.fls
 *.fdb_latexmk
 *.synctex.gz
-*.synctex(busy)
+*.synctex(busy).gz
 
 # PDF gerado (versione apenas releases, se quiser)
 main.pdf
