@@ -14,8 +14,8 @@
 *.synctex.gz
 *.synctex(busy).gz
 
-# PDF gerado (versione apenas releases, se quiser)
-main.pdf
+# PDF gerado (no futuro, versionamento apenas releases)
+# main.pdf
 
 # Editor / SO
 .vscode/
